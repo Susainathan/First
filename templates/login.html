@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login page</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <script type="text/javascript"></script>
+</head>
+<body style="background-color:lightgray">
+<div class="col-md-4 offset-4 bg-white" style="margin-top:100px;">
+    <h2 class="page-header text-primary" style="text-align:center;padding-top:20px">Login Page</h2>
+    <br><br>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                    <p>{{msg}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    <form method="post" action="{{url_for('login')}}" autocomplete="off">
+        <div class="container form-group" style="padding-bottom:30px">
+            <input type="text" class="form-control" placeholder="Username"  id="username" name="username">
+            <br>
+            <input type="password" class="form-control" placeholder="Password" id="password" name="password">
+            <br>
+            <input type="submit" class="btn btn-outline-primary" value="Login">
+            <a href="/registration" style="margin-left:210px">create new user</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
