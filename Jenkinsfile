@@ -16,7 +16,7 @@ pipeline {
                  withSonarQubeEnv('MySonar') {
                     sh '''
                     docker run --rm \
-                      --network sonar_jenkins_network \
+                      --network cpo-dev-env-network \
                       -v $(pwd):/usr/src \
                       -w /usr/src \
                       sonarsource/sonar-scanner-cli:latest \
