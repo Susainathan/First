@@ -9,15 +9,15 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                echo '$(pwd)'
+                sh 'pwd'
             }
         }
         stage('SonarQube Scan') {
             steps {
-                 withSonarQubeEnv('MySonar') {
+                withSonarQubeEnv('MySonar') {
                     sh '''
                     docker run --rm \
-                      -v "$(pwd):/usr/src" \
+                      -v "$WORKSPACE:/usr/src" \
                       --network host \
                       sonarsource/sonar-scanner-cli:latest \
                       sonar-scanner \
