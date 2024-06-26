@@ -1,9 +1,24 @@
 pipeline {
-    agent any 
+    agent any
     stages {
-        stage('Stage 1') {
+        stage('Checkout') {
             steps {
-                echo 'Hello world!' 
+                git branch: 'master', url: 'https://github.com/Susainathan/First.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building...'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
             }
         }
     }
