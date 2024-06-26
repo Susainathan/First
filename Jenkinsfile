@@ -16,8 +16,8 @@ pipeline {
                  withSonarQubeEnv('MySonar') {
                     sh """
                     sonar-scanner \
-                        -Dsonar.projectKey=your_project_key \
-                        -Dsonar.projectName="Your Project Name" \
+                        -Dsonar.projectKey=first \
+                        -Dsonar.projectName="First" \
                         -Dsonar.sources=src \
                         -Dsonar.language=py \
                         -Dsonar.sourceEncoding=UTF-8
