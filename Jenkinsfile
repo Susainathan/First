@@ -11,6 +11,20 @@ pipeline {
                 echo 'Building...'
             }
         }
+        stage('SonarQube Scan') {
+            steps {
+                withSonarQubeEnv('sonar-scanner') {
+                    sh """
+                    sonar-scanner \
+                        -Dsonar.projectKey=your_project_key \
+                        -Dsonar.projectName="Your Project Name" \
+                        -Dsonar.sources=src \
+                        -Dsonar.language=py \
+                        -Dsonar.sourceEncoding=UTF-8
+                    """
+                }
+            }
+        }
         stage('Test') {
             steps {
                 echo 'Testing...'
