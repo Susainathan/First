@@ -25,7 +25,7 @@ pipeline {
                         -Dsonar.projectName=First \
                         -Dsonar.sources=src \
                         -Dsonar.host.url=http://sonarqube:9000 \
-                        -Dsonar.login=your_sonar_token
+                        -Dsonar.login=sqp_ef3b30ddc87e7e3f82473ad4208624f3bbc881d4
                     '''
                 }
             }
