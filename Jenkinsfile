@@ -13,7 +13,7 @@ pipeline {
         }
         stage('SonarQube Scan') {
             steps {
-                 withSonarQubeEnv('SonarQube Server') {
+                 withSonarQubeEnv('MySonar') {
                     sh """
                     sonar-scanner \
                         -Dsonar.projectKey=your_project_key \
