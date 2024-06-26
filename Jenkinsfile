@@ -9,6 +9,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
+                echo '$(pwd)'
             }
         }
         stage('SonarQube Scan') {
