@@ -14,14 +14,19 @@ pipeline {
         stage('SonarQube Scan') {
             steps {
                  withSonarQubeEnv('MySonar') {
-                    sh """
-                    sonar-scanner \
+                    sh '''
+                    docker run --rm \
+                      --network sonar_jenkins_network \
+                      -v $(pwd):/usr/src \
+                      -w /usr/src \
+                      sonarsource/sonar-scanner-cli:latest \
+                      sonar-scanner \
                         -Dsonar.projectKey=first \
-                        -Dsonar.projectName="First" \
+                        -Dsonar.projectName=First \
                         -Dsonar.sources=src \
-                        -Dsonar.language=py \
-                        -Dsonar.sourceEncoding=UTF-8
-                    """
+                        -Dsonar.host.url=http://sonarqube:9000 \
+                        -Dsonar.login=your_sonar_token
+                    '''
                 }
             }
         }
