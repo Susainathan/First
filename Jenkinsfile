@@ -17,7 +17,7 @@ pipeline {
                     sh '''
                     docker run --rm \
                       --network cpo-dev-env-network \
-                      -v $(pwd):/usr/src \
+                      -v $WORKSPACE:/usr/src \
                       -w /usr/src \
                       sonarsource/sonar-scanner-cli:latest \
                       sonar-scanner \
