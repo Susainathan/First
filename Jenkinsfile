@@ -6,15 +6,9 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/Susainathan/First.git'
             }
         }
-        stage('List Files') {
-            steps {
-                sh 'ls -la'
-            }
-        }
         stage('Build') {
             steps {
                 echo 'Building...'
-                sh 'pwd'
             }
         }
         stage('SonarQube Scan') {
@@ -22,7 +16,7 @@ pipeline {
                 withSonarQubeEnv('MySonar') {
                     sh '''
                     docker run --rm \
-                      -v "$WORKSPACE:/usr/src" \
+                      -v "$(pwd):/usr/src" \
                       --network host \
                       sonarsource/sonar-scanner-cli:latest \
                       sonar-scanner \
