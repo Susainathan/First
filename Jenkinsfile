@@ -6,10 +6,14 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/Susainathan/First.git'
             }
         }
+        stage('List Files') {
+            steps {
+                sh 'ls -la'
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Building...'
-                sh 'pwd'
             }
         }
         stage('SonarQube Scan') {
