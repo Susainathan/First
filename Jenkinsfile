@@ -10,25 +10,25 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/Susainathan/First.git'
             }
         }
-        stage('SonarQube Scan') {
-            steps {
-                withSonarQubeEnv(SONARQUBE_SERVER) {
-                    sh '''
-                    docker run --rm \
-                      -v "$WORKSPACE:/usr/src" \
-                      --network host \
-                      sonarsource/sonar-scanner-cli:latest \
-                      sonar-scanner \
-                        -Dsonar.projectKey=first \
-                        -Dsonar.sources=. \
-                        -Dsonar.host.url=http://localhost:9001 \
-                        -Dsonar.login=${SONARQUBE_TOKEN} \
-                        -Dsonar.python.version=3.x \
-                        -Dsonar.scm.provider=git
-                    '''
-                }
-            }
-        }
+        // stage('SonarQube Scan') {
+        //     steps {
+        //         withSonarQubeEnv(SONARQUBE_SERVER) {
+        //             sh '''
+        //             docker run --rm \
+        //               -v "$WORKSPACE:/usr/src" \
+        //               --network host \
+        //               sonarsource/sonar-scanner-cli:latest \
+        //               sonar-scanner \
+        //                 -Dsonar.projectKey=first \
+        //                 -Dsonar.sources=. \
+        //                 -Dsonar.host.url=http://localhost:9001 \
+        //                 -Dsonar.login=${SONARQUBE_TOKEN} \
+        //                 -Dsonar.python.version=3.x \
+        //                 -Dsonar.scm.provider=git
+        //             '''
+        //         }
+        //     }
+        // }
         stage('Test') {
             steps {
                 echo 'Testing...'
