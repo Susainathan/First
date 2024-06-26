@@ -19,7 +19,7 @@ pipeline {
                       -v "$WORKSPACE:/usr/src" \
                       --network host \
                       sonarsource/sonar-scanner-cli:latest \
-                      sonar-scanner \
+                      sonar-scanner.bat \ 
                         -Dsonar.projectKey=first \
                         -Dsonar.sources=. \
                         -Dsonar.host.url=http://localhost:9001 \
