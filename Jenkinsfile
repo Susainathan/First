@@ -46,10 +46,10 @@ pipeline {
                 withSonarQubeEnv('MySonar') {
                     sh '''
                     docker run --rm \
-                      -v "$WORKSPACE:/usr/src" \
-                      --network host \
-                      sonarsource/sonar-scanner-cli:latest \
-                      sonar-scanner.bat \ 
+                        -v "$WORKSPACE:/usr/src" \
+                        --network host \
+                        sonarsource/sonar-scanner-cli:latest \
+                        sonar-scanner \
                         -Dsonar.projectKey=first \
                         -Dsonar.sources=. \
                         -Dsonar.host.url=http://localhost:9001 \
