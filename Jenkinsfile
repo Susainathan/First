@@ -17,7 +17,7 @@ pipeline {
                     try {
                         sh '''
                         python3 -m venv venv
-                        source venv/bin/activate
+                        . venv/bin/activate
                         pip install --upgrade pip
                         pip install bandit semgrep
                         '''
@@ -32,7 +32,7 @@ pipeline {
                 script {
                     try {
                         sh '''
-                        source venv/bin/activate
+                        . venv/bin/activate
                         python security_check.py
                         '''
                     } catch (Exception e) {
