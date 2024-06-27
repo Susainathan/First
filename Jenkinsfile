@@ -45,16 +45,19 @@ pipeline {
             steps {
                 withSonarQubeEnv('MySonar') {
                     sh '''
-                    docker run --rm \
-                        -v "$WORKSPACE:/usr/src" \
-                        --network host \
-                        sonarsource/sonar-scanner-cli:latest \
-                        sonar-scanner \
-                        -Dsonar.projectKey=first \
-                        -Dsonar.sources=. \
-                        -Dsonar.host.url=http://localhost:9001 \
-                        -Dsonar.login=sqp_ef3b30ddc87e7e3f82473ad4208624f3bbc881d4 \
-                    '''
+                            docker run --rm \
+                              -v "$WORKSPACE:/usr/src" \
+                              --network host \
+                              -v "$WORKSPACE/.git:/usr/src/.git" \
+                              sonarsource/sonar-scanner-cli:latest \
+                              sonar-scanner \
+                                -Dsonar.projectKey=first \
+                                -Dsonar.sources=. \
+                                -Dsonar.host.url=http://localhost:9001 \
+                                -Dsonar.login=sqp_ef3b30ddc87e7e3f82473ad4208624f3bbc881d4 \
+                                -Dsonar.python.version=3.x \
+                                -Dsonar.externalIssuesReportPaths=sonar-report.json
+                            '''
                 }
             }
         }
