@@ -6,9 +6,11 @@ def run_bandit():
     """
     Run bandit for static code analysis to check for security issues.
     """
+    print("bandit run started...")
     try:
         result = subprocess.run(['bandit', '-r', '.'], capture_output=True, text=True)
         print(result.stdout)
+        print("bandit run completed...")
     except Exception as e:
         print(f"Error running Bandit: {e}")
 
