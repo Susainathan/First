@@ -81,14 +81,6 @@ def check_crypto():
         print(f"Error checking cryptographic algorithms: {e}")
 
 if __name__ == "__main__":
-    if not shutil.which("semgrep"):
-        print("Semgrep is not installed. Please install it with 'pip install semgrep'")
-        sys.exit(1)
-    
-    if not shutil.which("bandit"):
-        print("Bandit is not installed. Please install it with 'pip install bandit'")
-        sys.exit(1)
-
     run_bandit()
     check_sql_injection()
     check_xss()
