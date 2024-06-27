@@ -11,6 +11,36 @@ pipeline {
                 echo 'Building...'
             }
         }
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    try {
+                        sh '''
+                        python3 -m venv venv
+                        source venv/bin/activate
+                        pip install --upgrade pip
+                        pip install bandit semgrep
+                        '''
+                    } catch (Exception e) {
+                        error "Installing dependencies failed: ${e.message}"
+                    }
+                }
+            }
+        }
+        stage('Run Security Checks') {
+            steps {
+                script {
+                    try {
+                        sh '''
+                        source venv/bin/activate
+                        python security_check.py
+                        '''
+                    } catch (Exception e) {
+                        error "Security check failed: ${e.message}"
+                    }
+                }
+            }
+        }
         stage('SonarQube Scan') {
             steps {
                 withSonarQubeEnv('MySonar') {
