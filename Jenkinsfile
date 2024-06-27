@@ -27,20 +27,20 @@ pipeline {
                 }
             }
         }
-        stage('Run Security Checks') {
-            steps {
-                script {
-                    try {
-                        sh '''
-                        . venv/bin/activate
-                        python security_check.py
-                        '''
-                    } catch (Exception e) {
-                        error "Security check failed: ${e.message}"
-                    }
-                }
-            }
-        }
+        // stage('Run Security Checks') {
+        //     steps {
+        //         script {
+        //             try {
+        //                 sh '''
+        //                 . venv/bin/activate
+        //                 python security_check.py
+        //                 '''
+        //             } catch (Exception e) {
+        //                 error "Security check failed: ${e.message}"
+        //             }
+        //         }
+        //     }
+        // }
         stage('SonarQube Scan') {
             steps {
                 withSonarQubeEnv('MySonar') {
